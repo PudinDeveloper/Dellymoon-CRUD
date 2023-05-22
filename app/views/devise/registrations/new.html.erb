@@ -1,28 +1,30 @@
-<h2>Registrarse</h2>
+<div class="login-container">
+  <h2 class="mb-4">Registrarse</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), data: {controller: "md5register"}) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), data: {controller: "md5register"}) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field input-group input-group-lg my-4">
-    <span class="input-group-text" id="inputGroup-sizing-lg">Correo</span>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Correo electrónico', class: 'form-control' %>
-  </div>
+    <span class="input-group-text mb-1" id="inputGroup-sizing-lg">Correo</span>
+    <div class="field input-group input-group-lg mb-4">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Correo electrónico', class: 'form-control' %>
+    </div>
 
-  <div class="field input-group input-group-lg my-4">
-    <span class="input-group-text" id="inputGroup-sizing-lg">Contraseña</span>
-    <% if @minimum_password_length %>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password", placeholder: '6 caracteres mínimo', class: 'form-control' %>
-  </div>
+    <span class="input-group-text mb-1" id="inputGroup-sizing-lg">Contraseña</span>
+    <div class="field input-group input-group-lg mb-4">
+      <% if @minimum_password_length %>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "new-password", placeholder: '6 caracteres mínimo', class: 'form-control' %>
+    </div>
 
-  <div class="field input-group input-group-lg my-4">
-    <span class="input-group-text" id="inputGroup-sizing-lg">Confirmar contraseña</span>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: '6 caracteres mínimo', class: 'form-control' %>
-  </div>
+    <span class="input-group-text mb-1" id="inputGroup-sizing-lg">Confirmar contraseña</span>
+    <div class="field input-group input-group-lg mb-4">
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: '6 caracteres mínimo', class: 'form-control' %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Registrarse", id:"signup", class: 'btn btn-primary mt-1 mb-3' %>
-  </div>
-<% end %>
+    <div class="actions">
+      <%= f.submit "Registrarse", id:"signup", class: 'btn btn-primary mt-1 mb-3' %>
+    </div>
+  <% end %>
 
-<%= render "devise/shared/links" %>
+  <%= render "devise/shared/links" %>
+</div>

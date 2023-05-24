@@ -10,12 +10,16 @@ export default class extends Controller {
       !document.getElementById("user_password").value == "" &&
       !document.getElementById("user_password_confirmation").value == ""
     ) {
-      document.getElementById("user_password").value = md5(
-        document.getElementById("user_password").value
-      );
-      document.getElementById("user_password_confirmation").value = md5(
-        document.getElementById("user_password_confirmation").value
-      );
+      if (document.getElementById("user_password").value.length < 6) {
+        return false;
+      } else {
+        document.getElementById("user_password").value = md5(
+          document.getElementById("user_password").value
+        );
+        document.getElementById("user_password_confirmation").value = md5(
+          document.getElementById("user_password_confirmation").value
+        );
+      }
     }
   }
 }

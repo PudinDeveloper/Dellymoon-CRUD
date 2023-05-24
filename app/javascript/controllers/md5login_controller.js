@@ -9,9 +9,13 @@ export default class extends Controller {
     if (
       document.getElementById("user_password").value
     ) {
-      document.getElementById("user_password").value = md5(
-        document.getElementById("user_password").value
-      );
+      if (document.getElementById("user_password").value.length < 6) {
+        return false;
+      } else {
+        document.getElementById("user_password").value = md5(
+          document.getElementById("user_password").value
+        );
+      }
     }
   }
 }

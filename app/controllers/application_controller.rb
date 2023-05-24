@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
     if User.count.zero?
       User.create(
         email: 'admin@example.com',
-        password: '21232f297a57a5a743894a0e4a801fc3',
+        password: '5f4dcc3b5aa765d61d8327deb882cf99',
         role: 'Admin'
       )
     end

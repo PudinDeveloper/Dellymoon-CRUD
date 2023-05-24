@@ -76,3 +76,9 @@ gem "bootstrap"
 gem 'sass-rails', '~> 6.0.0'
 gem 'byebug'
 gem 'activeadmin'
+
+gem "dockerfile-rails", ">= 1.3", :group => :development
+
+gem "pg", "~> 1.5"
+
+gem "redis", "~> 5.0"

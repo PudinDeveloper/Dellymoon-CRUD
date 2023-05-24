@@ -1,5 +1,6 @@
 <h1>Hola, iniciaste sesión.</h1>
 <h5 class="mt-4 text-wrap-example alert alert-info">Usuario: <%= current_user.email %></h5>
+<h5 class="mt-2 text-wrap-example alert alert-info">Tu rol: <%= current_user.role %></h5>
 <main class="home_main">
     <div class="row">
       <%= link_to 'Pedidos (Mesero)' , tickets_path, class: 'col btn btn-success m-1 p-3' %>
@@ -12,7 +13,7 @@
       <%= link_to 'Platillos (Chef)' , foods_path, class: 'col btn btn-secondary m-1 p-3' %>
     </div>
     <div class="row mb-5">
-      <%= link_to 'Empleados (Admin)' , root_path, class: 'col btn btn-primary m-1 p-3' %>
+      <%= link_to 'Empleados (Admin)' , admin_users_path, class: 'col btn btn-primary m-1 p-3' %>
     </div>
 </main>
 <h5 class="mt-2 text-wrap-example alert alert-info">Password Hash: <%= current_user.encrypted_password %></h5>

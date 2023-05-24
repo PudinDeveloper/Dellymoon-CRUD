@@ -1,5 +1,7 @@
 class TicketsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_ticket, only: %i[ show edit update destroy ]
+  before_action :authorize_role
 
   # GET /tickets or /tickets.json
   def index
@@ -74,12 +76,10 @@ class TicketsController < ApplicationController
   # DELETE /tickets/1 or /tickets/1.json
   def destroy
     if params[:dish]
-      byebug
       OrderFood.find(params[:dish]).destroy
       update_final_price
       redirect_to ticket_url(params[:id]), notice: "Dish was successfully removed."
     else
-      byebug
       @ticket_temp = Ticket.find(params[:id])
       @ticket_temp.status = false
       @ticket_temp.save
@@ -115,6 +115,13 @@ class TicketsController < ApplicationController
       @lticket = Ticket.find(params[:id])
       @lticket.final_price = @fp
       @lticket.save
+    end
+
+    def authorize_role
+      unless current_user && (current_user.role == "Mesero" || current_user.role == "Admin")
+        flash[:alert] = "Acceso denegado."
+        redirect_to root_path
+      end
     end
 
 end

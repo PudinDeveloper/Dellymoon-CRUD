@@ -75,3 +75,4 @@ end
 gem "bootstrap"
 gem 'sass-rails', '~> 6.0.0'
 gem 'byebug'
+gem 'activeadmin'

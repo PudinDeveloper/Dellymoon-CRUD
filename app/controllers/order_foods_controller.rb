@@ -1,5 +1,7 @@
 class OrderFoodsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_order_food, only: %i[ show edit update destroy ]
+  before_action :authorize_role
 
   # GET /order_foods or /order_foods.json
   def index
@@ -60,5 +62,12 @@ class OrderFoodsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def order_food_params
       params.require(:order_food).permit(:food_id, :ticket_id)
+    end
+
+    def authorize_role
+      unless current_user && (current_user.role == "Chef" || current_user.role == "Admin")
+        flash[:alert] = "Acceso denegado."
+        redirect_to root_path
+      end
     end
 end

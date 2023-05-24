@@ -32,6 +32,7 @@
     .buttons {
       display: flex;
       justify-content: space-evenly;
+      min-width: max-content;
     }
   }
 }

@@ -1,73 +1,75 @@
 <div class="container">
-	<h2>Cocina - Alimentos</h2>
+  <h2>Cocina - Alimentos <a href="#" class="mx-5 btn btn-primary" onclick="window.location.reload();">Recargar 🔄</a></h2>
+  <br>
+  <div class="table1">
+    <table class="table table-hover table-sm">
+      <thead class="thead-dark">
+        <tr>
+          <th class="th">Status</th>
+          <th class="th">TicketID:</th>
+          <th class="th">Comida/Bebida</th>
+          <th class="th">Mesa</th>
+          <th colspan="2" class="th">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @order_foods.each do |order_food| %>
+          <% food = Food.find(order_food.food_id) %>
+          <% ticket = Ticket.find(order_food.ticket_id) %>
+          <tr>
+            <% if order_food.status == 0 %>
+              <td><div class="alert alert-danger w-75 text-center p-1">No Stock</div></td>
+            <% elsif order_food.status == 1 %>
+              <td><div class="alert alert-warning w-75 text-center p-1">Cocinando</div></td>
+            <% else %>
+              <td><div class="alert alert-success w-75 text-center p-1">Listo</div></td>
+            <% end %>
+            <td><%= order_food.id %></td>
+            <td><%= food.name %></td>
+            <td><%= ticket.table %></td>
+            <%= form_with(model: order_food, url: url_for(order_food), local: true, method: :patch) do |f| %>
+              <td><%= f.submit 'Listo', class: 'btn btn-success', data: { confirm: 'Seguro?' } %></td>
+            <% end %>
+            <%= form_with(model: order_food, url: url_for(order_food), local: true, method: :delete) do |f| %>
+              <td><%= f.submit 'Sin Stock', class: 'btn btn-danger', data: { confirm: 'Seguro?' } %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
-	<br>
-
-	<div class="table1">
-		<table class="table table-hover table-sm">
-			<thead class="thead-dark">
-					<tr>
-					<th class="th">Status</th>
-					<th class="th">TicketID:</th>
-					<th class="th">Comida/Bebida</th>
-					<th class="th">Mesa</th>
-					<th colspan="3" class="th">Acciones</th>
-				</tr>
-			</thead>
-			<tbody>
-				<% @order_foods.each do |order_food| %>
-					<tr>
-						<% if order_food.status == 0 %>
-							<td><div class="alert alert-danger w-75 text-center p-1">No Stock</div></td>
-						<% elsif order_food.status == 1 %>
-							<td><div class="alert alert-warning w-75 text-center p-1">Cocinando</div></td>
-						<% else %>
-							<td><div class="alert alert-success w-75 text-center p-1">Listo</div></td>
-						<% end %>
-						<td><%= order_food.id %></td>
-						<td><%= Food.find(order_food.food_id).name %></td>
-						<td><%= Ticket.find(order_food.ticket_id).table %></td>
-						<%= form_with(model: order_food, url: order_food_path(order_food), local: true, method: :patch) do |f| %>
-								<td><%= f.submit 'Listo', class: 'btn btn-success', data: { confirm: 'Seguro?' } %></td>
-						<% end %>
-						<%= form_with(model: order_food, url: order_food_path(order_food), local: true, method: :delete) do |f| %>
-							<td><%= f.submit 'Sin Stock', class: 'btn btn-danger', data: { confirm: 'Seguro?' } %></td>
-						<% end %>
-					</tr>
-				<% end %>
-			</tbody>
-		</table>
-	</div>
-
-	<h2 class="mt-5 mb-4">Ordenes antiguas</h2>
-	<div class="table1">
-		<table class="table table-hover table-sm">
-			<thead class="thead-dark">
-					<tr>
-					<th class="th">Status</th>
-					<th class="th">TicketID:</th>
-					<th class="th">Comida/Bebida</th>
-					<th class="th">Mesa</th>
-					<th class="th">Fecha</th>
-				</tr>
-			</thead>
-			<tbody>
-				<% @order_foods_all.each do |order_food| %>
-					<tr>
-						<% if order_food.status == 0 %>
-							<td><div class="alert alert-danger w-75 text-center p-1">No Stock</div></td>
-						<% elsif order_food.status == 1 %>
-							<td><div class="alert alert-warning w-75 text-center p-1">Cocinando</div></td>
-						<% else %>
-							<td><div class="alert alert-success w-75 text-center p-1">Listo</div></td>
-						<% end %>
-						<td><%= order_food.id %></td>
-						<td><%= Food.find(order_food.food_id).name %></td>
-						<td><%= Ticket.find(order_food.ticket_id).table %></td>
-						<td><%= order_food.created_at.strftime("%d/%m/%Y %H:%M") %></td>
-					</tr>
-				<% end %>
-			</tbody>
-		</table>
-	</div>
+  <h2 class="mt-5 mb-4">Ordenes antiguas</h2>
+  <div class="table1">
+    <table class="table table-hover table-sm">
+      <thead class="thead-dark">
+        <tr>
+          <th class="th">Status</th>
+          <th class="th">TicketID:</th>
+          <th class="th">Comida/Bebida</th>
+          <th class="th">Mesa</th>
+          <th class="th">Fecha</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @order_foods_all.each do |order_food| %>
+          <% food = Food.find(order_food.food_id) %>
+          <% ticket = Ticket.find(order_food.ticket_id) %>
+          <tr>
+            <% if order_food.status == 0 %>
+              <td><div class="alert alert-danger w-75 text-center p-1">No Stock</div></td>
+            <% elsif order_food.status == 1 %>
+              <td><div class="alert alert-warning w-75 text-center p-1">Cocinando</div></td>
+            <% else %>
+              <td><div class="alert alert-success w-75 text-center p-1">Listo</div></td>
+            <% end %>
+            <td><%= order_food.id %></td>
+            <td><%= food.name %></td>
+            <td><%= ticket.table %></td>
+            <td><%= order_food.created_at.strftime("%d/%m/%Y %H:%M") %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

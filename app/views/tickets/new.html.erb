@@ -1,0 +1,17 @@
+<%# <h1>New Ticket</h1> %>
+
+<%= form_with scope: :ticket, url: tickets_path, local: true do |f| %>
+    <p>
+    	<h2 class="mb-5">Crear nuevo pedido</h2>
+    	<h4>Mesa del pedido</h4>
+    	<%= f.text_field :table, class: "form-control form-control-lg" %>
+      <h4 class="my-3">Empleado ID</h4>
+    	<%= f.text_field :user_id, class: "form-control form-control-lg" %>
+    </p>
+
+		 <p>
+      <%= f.submit "Crear pedido", class: 'btn btn-success my-3'%>
+    </p>
+<% end %>
+
+<%= link_to 'Atrás', tickets_path, class: "btn btn-secondary" %>

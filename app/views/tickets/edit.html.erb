@@ -1,0 +1,30 @@
+<%= link_to 'Atrás', tickets_path, class: "btn btn-secondary" %>
+<h1 class="my-3">Add food to ticket ID: <%= @ticket.id %></h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Cantidad</th>
+      <th>Precio</th>
+      <th>Tipo</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @foods.each do |food| %>
+      <tr>
+        <td><%= food.name %></td>
+        <td><%= food.quantity %></td>
+        <td><%= food.price %></td>
+        <td><%= food.food_type %></td>
+        <td>
+          <%= form_with(model: @ticket, url: ticket_path(@ticket), local: true, method: :patch) do |f| %>
+            <%= f.button "Añadir", name: "dish", value: food.id, class: "btn btn-success" %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

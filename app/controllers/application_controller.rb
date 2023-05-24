@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :create_admin_user_if_none_exists
+  before_action :authenticate_user!
 
   private
 

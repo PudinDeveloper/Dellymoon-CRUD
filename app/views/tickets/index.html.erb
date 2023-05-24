@@ -3,6 +3,7 @@
 <div class="mx-5">
   <%= link_to 'Atrás', root_path, class: "btn btn-lg btn-dark my-3" %>
   <%= link_to 'Nuevo Pedido', new_ticket_path, class: "btn btn-lg btn-success" %>
+  <a href="#" class="btn btn-lg btn-primary" onclick="window.location.reload();">Recargar 🔄</a>
 </div>
 
 <div class="m-5">
@@ -24,10 +25,10 @@
             <td><%= ticket.table %></td>
             <td>$<%= ticket.final_price ? ticket.final_price : 0.0 %></td>
             <td><%= ticket.updated_at %></td>
-            <td><%= link_to 'Abrir', ticket, class: "btn btn-success" %></td>
+            <td><%= link_to 'Abrir', ticket, class: "btn btn-success btn-lg" %></td>
             <td>
               <%= form_with(model: ticket, method: :delete, data: { confirm: 'Are you sure?' }) do |form| %>
-                <%= form.submit 'Completar', class: 'btn btn-primary' %>
+                <%= form.submit 'Completar', class: 'btn btn-primary btn-lg' %>
               <% end %>
             </td>
           </tr>
@@ -52,7 +53,7 @@
             <td><%= ticket.table %></td>
             <td>$<%= ticket.final_price ? ticket.final_price : 0.0 %></td>
             <td><%= ticket.updated_at.localtime %></td>
-            <td><%= link_to 'Ver', ticket, class: "btn btn-success" %></td>
+            <td><%= link_to 'Ver', ticket, class: "btn btn-success btn-lg" %></td>
           </tr>
           <% end %>
       </tbody>

@@ -1,17 +1,17 @@
-<%= link_to 'Atrás', tickets_path, class: "btn btn-secondary" %>
+<%= link_to 'Atrás', tickets_path, class: "btn btn-secondary" %> <a href="#" class="mx-5 btn btn-primary" onclick="window.location.reload();">Recargar 🔄</a>
 
 <h3 class="my-2 mt-4"><strong>Ticket número: <strong><%= @ticket.id %></h3>
-<h4>
+<h4 class="alert alert-info">
   <strong>Mesa:</strong>
   <%= @ticket.table %>
 </h4>
-<h4>
+<h4 class="alert alert-info">
   <strong>Total del ticket:</strong>
   $<%= @ticket.final_price ? @ticket.final_price : 0.0 %>
 </h4>
-<h4>
+<h4 class="alert alert-info">
   <strong>Empleado atendiendo:</strong>
-  <% # @employee.first_name + " " + @employee.last_name %>
+  <%= @employee.email %>
 </h4>
 <%= link_to 'Añadir alimentos', edit_ticket_path(@ticket), class: "btn btn-success my-4" %>
 
@@ -53,7 +53,7 @@
         <td>$<%= @food.price ? @food.price : 0.0 %> MXN</td>
         <td><%= @food.food_type %></td>
         <%= form_with(model: @ticket, url: ticket_path(@ticket), method: :delete) do |f| %>
-          <td><%= f.button "Borrar", name: "dish", value: order.id, class: "btn btn-danger", id: "borrar-button" %></td>
+          <td><%= f.button "Borrar", name: "dish", value: order.id, class: "btn btn-danger btn-lg", id: "borrar-button" %></td>
         <% end %>
       </tr>
     <% end %>

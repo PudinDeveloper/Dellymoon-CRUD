@@ -34,9 +34,9 @@ class TicketsController < ApplicationController
 
   # POST /tickets or /tickets.json
   def create
-    @find_employee = User.find_by(id: (params[:ticket][:user_id]).to_i)
+    @find_employee = User.find_by(id: (current_user.id).to_i)
     if @find_employee
-      @ticket = Ticket.new(ticket_params)
+      @ticket = Ticket.new(table: params[:ticket][:table], user_id: current_user.id)
       respond_to do |format|
         if @ticket.save
           format.html { redirect_to ticket_url(@ticket), notice: "Ticket was successfully created." }

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class OrderFoodsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_order_food, only: %i[ show edit update destroy ]
@@ -30,8 +32,8 @@ class OrderFoodsController < ApplicationController
 
     respond_to do |format|
       if @order_food.save
-        format.html { redirect_to order_food_url(@order_food), notice: "Order food was successfully created." }
-        format.json { render :show, status: :created, location: @order_food }
+                format.html { redirect_to order_food_url(@order_food), notice: "Order food was successfully created." }
+                format.json { render :show, status: :created, location: @order_food }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @order_food.errors, status: :unprocessable_entity }
@@ -54,20 +56,20 @@ class OrderFoodsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_order_food
-      @order_food = OrderFood.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_order_food
+    @order_food = OrderFood.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def order_food_params
-      params.require(:order_food).permit(:food_id, :ticket_id)
-    end
+  # Only allow a list of trusted parameters through.
+  def order_food_params
+    params.require(:order_food).permit(:food_id, :ticket_id)
+  end
 
-    def authorize_role
-      unless current_user && (current_user.role == "Chef" || current_user.role == "Admin")
-        flash[:alert] = "Acceso denegado."
-        redirect_to root_path
-      end
+  def authorize_role
+    unless current_user && (current_user.role == "Chef" || current_user.role == "Admin")
+      flash[:alert] = "Acceso denegado."
+      redirect_to root_path
     end
+  end
 end

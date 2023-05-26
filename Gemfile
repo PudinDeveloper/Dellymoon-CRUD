@@ -53,7 +53,7 @@ end
 
 group :development do
   gem "solargraph"
-
+  gem 'rubocop', require: false
   gem "erb_lint"
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
@@ -70,12 +70,14 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem 'rubocop', require: false
 end
 
 gem "bootstrap"
 gem 'sass-rails', '~> 6.0.0'
 gem 'byebug'
 gem 'activeadmin'
+gem 'rubocop'
 
 gem "dockerfile-rails", ">= 1.3", :group => :development
 

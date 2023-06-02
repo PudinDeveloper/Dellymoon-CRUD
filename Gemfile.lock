@@ -113,6 +113,9 @@ GEM
     concurrent-ruby (1.1.10)
     connection_pool (2.4.1)
     crass (1.0.6)
+    cypress-rails (0.5.5)
+      puma (>= 3.8.0)
+      railties (>= 5.2.0)
     date (3.3.3)
     debug (1.7.1)
       irb (>= 1.5.0)
@@ -368,6 +371,7 @@ DEPENDENCIES
   bootstrap
   byebug
   capybara
+  cypress-rails
   debug
   devise
   dockerfile-rails (>= 1.3)

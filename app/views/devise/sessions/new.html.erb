@@ -4,12 +4,12 @@
   <%= form_for(resource, as: resource_name, url: session_path(resource_name), data: {controller: "md5login"}) do |f| %>
     <span class="input-group-text mb-1" id="inputGroup-sizing-lg">Correo</span>
     <div class="field input-group input-group-lg mb-4">
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', id:"email_field" %>
     </div>
 
     <span class="input-group-text mb-1" id="inputGroup-sizing-lg">Contraseña</span>
     <div class="field input-group input-group-lg mb-4">
-      <%= f.password_field :password, autocomplete: "current-password", class: 'form-control' %>
+      <%= f.password_field :password, autocomplete: "current-password", class: 'form-control', id:"password_field" %>
     </div>
 
     <% if devise_mapping.rememberable? %>

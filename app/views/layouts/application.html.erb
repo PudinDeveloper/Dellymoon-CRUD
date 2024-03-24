@@ -1,29 +1,35 @@
 <!DOCTYPE html>
 <html>
+
+  <% # Head %>
   <head>
     <title>Dellymoon</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag 'custom.css', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'custom.css', media: 'all' %>
     <%= javascript_importmap_tags %>
     <%= hotwire_livereload_tags if Rails.env.development? %>
     <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
   </head>
 
-  <body>
+  <% # Turbolinks are disabled because it was causing issues. %>
+  <body data-turbolinks='false'>
+
+    <% # Navbar %>
     <nav class="navbar navbar-dark bg-dark">
       <div class="container-fluid custom_margin">
-        <a href="/"><%= image_tag("foo-corp_logo_white.png", size: "90x84", alt: "Edit Entry") %></a>
+        <a href="/"><%= image_tag("foo-corp_logo_white.png", size: "90x84", alt: "Restaurant Logo") %></a>
         <a href="/"><h1 class="nav_h1">Dellymoon</h1></a>
         <% if user_signed_in? %>
-          <%= button_to "Salir", destroy_user_session_path, method: :delete, class: 'me-3 btn btn-danger'  %>
+          <%= button_to "Log out", destroy_user_session_path, method: :delete, class: 'me-3 btn btn-danger'  %>
         <% else %>
           <%= link_to 'V 3.0.0' , root_path, class: 'btn btn-primary disabled me-3' %>
         <% end %>
       </div>
     </nav>
+
+    <% # Notice alerts %>
     <% if notice || alert %>
       <div class='mb-3 mx-3'>
         <% if notice %>
@@ -34,8 +40,12 @@
         <% end %>
       </div>
     <% end %>
+
+    <% # Body of anything else %>
     <div class='container yield_container'>
       <%= yield %>
     </div>
+
+
   </body>
 </html>

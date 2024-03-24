@@ -4,19 +4,19 @@
 
   <ul class="nav mb-3">
     <li class="nav-item">
-      <%= link_to 'Regresar', root_path, class:"btn btn-dark" %>
+      <%= link_to 'Back', root_path, class:"btn btn-dark" %>
     </li>
   </ul>
-  <h1 class="mb-5">Comidas / Bebidas</h1>
-  <%= link_to 'Agregar', new_food_path, class: "btn btn-success mb-3" %>
+  <h1 class="my-5">Dishes / Drinks / Desserts</h1>
+  <%= link_to 'Add a new Dish / Drink / Dessert', new_food_path, class: "btn btn-success mb-3" %>
 
   <div class="table1">
     <table class="table table-hover table-sm">
         <thead class="thead-dark">
           <tr>
-            <th>Nombre</th>
-            <th>Cantidad</th>
-            <th>Precio</th>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
             <th>Tipo</th>
             <th colspan="3"></th>
           </tr>
@@ -26,12 +26,12 @@
           <% @foods.each do |food| %>
             <tr>
               <td><%= food.name %></td>
-              <% if food.food_type == "Bebida"%>
-              <td><%= food.quantity %> ml</td>
+              <% if food.food_type == "Beverage"%>
+                <td><%= food.quantity %> ml</td>
               <% else %>
-              <td><%= food.quantity %> g</td>
+                <td><%= food.quantity %> g</td>
               <% end %>
-              <td>$<%= food.price %>MXN</td>
+              <td>$<%= food.price %></td>
               <td><%= food.food_type %></td>
               <td><%= link_to 'Edit', edit_food_path(food), class: "btn btn-info" %></td>
             </tr>

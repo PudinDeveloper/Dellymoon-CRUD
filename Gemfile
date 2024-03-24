@@ -51,9 +51,6 @@ gem "bootsnap", require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
-
-  # Faker is a pure-Ruby generator of fake data
-  gem 'faker'
 end
 
 group :development do
@@ -102,3 +99,6 @@ gem "redis", "~> 5.0"
 
 # cypress-rails is a gem for Rails to use Cypress for testing
 gem "cypress-rails"
+
+# Faker is a pure-Ruby generator of fake data
+  gem 'faker'

@@ -35,6 +35,8 @@ gem "jbuilder"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 gem "bcrypt", "~> 3.1.7"
+
+# Devise is a flexible authentication solution for Rails
 gem "devise"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -49,11 +51,16 @@ gem "bootsnap", require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+
+  # Faker is a pure-Ruby generator of fake data
+  gem 'faker'
 end
 
 group :development do
+  # solargraph is a language server for Ruby [https://solargraph.org/]
   gem "solargraph"
-  gem 'rubocop', require: false
+
+  # erb_lint is a linter for ERB templates
   gem "erb_lint"
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
@@ -70,18 +77,28 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
-  gem 'rubocop', require: false
 end
 
+# Bootstrap gem for Rails
 gem "bootstrap"
-gem 'sass-rails', '~> 6.0.0'
-gem 'byebug'
-gem 'activeadmin'
-gem 'rubocop'
 
+# This is the sass gem for Rails to use Bootstrap with better performance
+gem 'sass-rails', '~> 6.0.0'
+
+# Byebug is a Ruby debugger for Ruby and will help very easy to debug the code
+gem 'byebug'
+
+# activeadmin is a gem for Rails to create admin panel
+gem 'activeadmin'
+
+# dockerfile-rails is a gem for Rails to create Dockerfile for Rails application
 gem "dockerfile-rails", ">= 1.3", :group => :development
 
+# pg is a gem for Rails to use PostgreSQL database
 gem "pg", "~> 1.5"
 
+# redis is a gem for Rails to use Redis database
 gem "redis", "~> 5.0"
+
+# cypress-rails is a gem for Rails to use Cypress for testing
 gem "cypress-rails"

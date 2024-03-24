@@ -1,20 +1,30 @@
-<h1>Hola, iniciaste sesión.</h1>
-<h5 class="mt-4 text-wrap-example alert alert-info">Usuario: <%= current_user.email %></h5>
-<h5 class="mt-2 text-wrap-example alert alert-info">Tu rol: <%= current_user.role %></h5>
+<h1>Hi, you logged in!</h1>
+
+<div class="row">
+  <div class="col-md-6">
+    <h5 class="mt-2 text-wrap-example alert alert-info">User: <%= current_user.email %></h5>
+  </div>
+  <div class="col-md-6">
+    <h5 class="mt-2 text-wrap-example alert alert-info">Your role: <%= current_user.role %></h5>
+  </div>
+</div>
+
 <main class="home_main">
     <div class="row">
-      <%= link_to 'Pedidos (Mesero)' , tickets_path, class: 'col btn btn-success m-1 p-3' %>
+      <%= link_to 'Orders (WaitStaff)' , tickets_path, class: 'col btn btn-success m-1 p-3' %>
     </div>
     <div class="row">
-      <%= link_to 'Cocina (Chef)' , order_foods_path, class: 'col btn btn-primary m-1 p-3' %>
+      <%= link_to 'Kitchen (Chef)' , order_foods_path, class: 'col btn btn-primary m-1 p-3' %>
       <% # link_to 'Historial de Pedidos' , inactive_tickets_path, class: 'col btn btn-primary m-1 p-3' %>
     </div>
     <div class="row">
-      <%= link_to 'Platillos (Chef)' , foods_path, class: 'col btn btn-secondary m-1 p-3' %>
+      <%= link_to 'Dishes (Chef)' , foods_path, class: 'col btn btn-secondary m-1 p-3' %>
     </div>
     <div class="row mb-5">
-      <%= link_to 'Empleados (Admin)' , admin_users_path, class: 'col btn btn-primary m-1 p-3' %>
+      <%= link_to 'Employees (Admin)' , admin_users_path, class: 'col btn btn-primary m-1 p-3' %>
     </div>
 </main>
-<h5 class="mt-2 text-wrap-example alert alert-info">Password Hash: <%= current_user.encrypted_password %></h5>
-<h6 class="mt-2 text-wrap-example alert alert-info">(AES-256-GCM Encryption Method)</h6>
+
+<% # These lines were commented because it was only part of the school project requirements to show the password hash. %>
+<% # <h5 class="mt-2 text-wrap-example alert alert-info">Password Hash: <%= current_user.encrypted_password </h5> %>
+<% # <h6 class="mt-2 text-wrap-example alert alert-info">(AES-256-GCM Encryption Method)</h6> %>

@@ -1,15 +1,15 @@
 <div class="container">
-  <h2>Cocina - Alimentos <a href="#" class="mx-5 btn btn-primary" onclick="window.location.reload();">Recargar 🔄</a></h2>
+  <h2>Kitchen dashboard - Current orders<a href="#" class="mx-5 btn btn-primary" onclick="window.location.reload();">Reload 🔄</a></h2>
   <br>
   <div class="table1">
     <table class="table table-hover table-sm">
       <thead class="thead-dark">
         <tr>
           <th class="th">Status</th>
-          <th class="th">TicketID:</th>
-          <th class="th">Comida/Bebida</th>
-          <th class="th">Mesa</th>
-          <th colspan="2" class="th">Acciones</th>
+          <th class="th">Ticket ID</th>
+          <th class="th">Dish/Drink</th>
+          <th class="th">Table</th>
+          <th colspan="2" class="th">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -18,20 +18,20 @@
           <% ticket = Ticket.find(order_food.ticket_id) %>
           <tr>
             <% if order_food.status == 0 %>
-              <td><div class="alert alert-danger w-75 text-center p-1">No Stock</div></td>
+              <td><div class="alert alert-danger w-75 text-center p-1">Without Stock</div></td>
             <% elsif order_food.status == 1 %>
-              <td><div class="alert alert-warning w-75 text-center p-1">Cocinando</div></td>
+              <td><div class="alert alert-warning w-75 text-center p-1">Cooking</div></td>
             <% else %>
-              <td><div class="alert alert-success w-75 text-center p-1">Listo</div></td>
+              <td><div class="alert alert-success w-75 text-center p-1">Done</div></td>
             <% end %>
             <td><%= order_food.id %></td>
             <td><%= food.name %></td>
             <td><%= ticket.table %></td>
             <%= form_with(model: order_food, url: url_for(order_food), local: true, method: :patch) do |f| %>
-              <td><%= f.submit 'Listo', class: 'btn btn-success', data: { confirm: 'Seguro?' } %></td>
+              <td><%= f.submit 'Done', class: 'btn btn-success' %></td>
             <% end %>
             <%= form_with(model: order_food, url: url_for(order_food), local: true, method: :delete) do |f| %>
-              <td><%= f.submit 'Sin Stock', class: 'btn btn-danger', data: { confirm: 'Seguro?' } %></td>
+              <td><%= f.submit 'Without Stock', class: 'btn btn-danger' %></td>
             <% end %>
           </tr>
         <% end %>
@@ -39,16 +39,16 @@
     </table>
   </div>
 
-  <h2 class="mt-5 mb-4">Ordenes antiguas</h2>
+  <h2 class="mt-5 mb-4">Past orders</h2>
   <div class="table1">
     <table class="table table-hover table-sm">
       <thead class="thead-dark">
         <tr>
           <th class="th">Status</th>
-          <th class="th">TicketID:</th>
-          <th class="th">Comida/Bebida</th>
-          <th class="th">Mesa</th>
-          <th class="th">Fecha</th>
+          <th class="th">Ticket ID</th>
+          <th class="th">Dish/Drink</th>
+          <th class="th">Table</th>
+          <th class="th">Datetime</th>
         </tr>
       </thead>
       <tbody>
@@ -57,11 +57,11 @@
           <% ticket = Ticket.find(order_food.ticket_id) %>
           <tr>
             <% if order_food.status == 0 %>
-              <td><div class="alert alert-danger w-75 text-center p-1">No Stock</div></td>
+              <td><div class="alert alert-danger w-75 text-center p-1">Without Stock</div></td>
             <% elsif order_food.status == 1 %>
-              <td><div class="alert alert-warning w-75 text-center p-1">Cocinando</div></td>
+              <td><div class="alert alert-warning w-75 text-center p-1">Cooking</div></td>
             <% else %>
-              <td><div class="alert alert-success w-75 text-center p-1">Listo</div></td>
+              <td><div class="alert alert-success w-75 text-center p-1">Done</div></td>
             <% end %>
             <td><%= order_food.id %></td>
             <td><%= food.name %></td>

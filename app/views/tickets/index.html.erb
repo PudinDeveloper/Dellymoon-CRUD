@@ -1,23 +1,23 @@
 <p id="notice"><%= notice %></p>
 
 <div class="mx-5">
-  <%= link_to 'Atrás', root_path, class: "btn btn-lg btn-dark my-3" %>
-  <%= link_to 'Nuevo Pedido', new_ticket_path, class: "btn btn-lg btn-success" %>
-  <a href="#" class="btn btn-lg btn-primary" onclick="window.location.reload();">Recargar 🔄</a>
+  <%= link_to 'Back', root_path, class: "btn btn-lg btn-dark my-3" %>
+  <%= link_to 'New order', new_ticket_path, class: "btn btn-lg btn-success" %>
+  <a href="#" class="btn btn-lg btn-primary" onclick="window.location.reload();">Reload 🔄</a>
 </div>
 
 <div class="m-5">
 
-<h2 class="my-5">Tickets Activos</h2>
+<h2 class="my-5">Active Tickets</h2>
 
   <div class="container">
     <table class="table table-hover">
       <thead>
         <th scope="col">Ticket ID</th>
-        <th scope="col">Mesa</th>
-        <th scope="col">Precio Final</th>
-        <th scope="col">Fecha</th>
-        <th colspan="5">Acciones</th>
+        <th scope="col">Table</th>
+        <th scope="col">Final Price</th>
+        <th scope="col">Datetime</th>
+        <th colspan="5">Actions</th>
       <tbody>
           <% @ticketsActive.each do |ticket| %>
           <tr>
@@ -25,10 +25,10 @@
             <td><%= ticket.table %></td>
             <td>$<%= ticket.final_price ? ticket.final_price : 0.0 %></td>
             <td><%= ticket.updated_at %></td>
-            <td><%= link_to 'Abrir', ticket, class: "btn btn-success btn-lg" %></td>
+            <td><%= link_to 'Open', ticket, class: "btn btn-success btn-lg" %></td>
             <td>
               <%= form_with(model: ticket, method: :delete, data: { confirm: 'Are you sure?' }) do |form| %>
-                <%= form.submit 'Completar', class: 'btn btn-primary btn-lg' %>
+                <%= form.submit 'Complete', class: 'btn btn-warning btn-lg' %>
               <% end %>
             </td>
           </tr>
@@ -37,15 +37,15 @@
     </table>
   </div>
 
-  <h2 class="my-5">Tickets Archivados</h2>
+  <h2 class="my-5">Past Tickets</h2>
   <div class="container">
     <table class="table table-hover">
       <thead>
         <th scope="col">Ticket ID</th>
-        <th scope="col">Mesa</th>
-        <th scope="col">Precio Final</th>
-        <th scope="col">Fecha</th>
-        <th colspan="5">Acciones</th>
+        <th scope="col">Table</th>
+        <th scope="col">Final Price</th>
+        <th scope="col">Datetime</th>
+        <th colspan="5">Actions</th>
       <tbody>
           <% @ticketsInactive.each do |ticket| %>
           <tr>
@@ -53,7 +53,7 @@
             <td><%= ticket.table %></td>
             <td>$<%= ticket.final_price ? ticket.final_price : 0.0 %></td>
             <td><%= ticket.updated_at.localtime %></td>
-            <td><%= link_to 'Ver', ticket, class: "btn btn-success btn-lg" %></td>
+            <td><%= link_to 'View', ticket, class: "btn btn-success btn-lg" %></td>
           </tr>
           <% end %>
       </tbody>

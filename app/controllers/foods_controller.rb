@@ -5,7 +5,9 @@ class FoodsController < ApplicationController
 
   # GET /foods or /foods.json
   def index
-    @foods = Food.all
+    # Get all the foods from the database with the isActive column set to true.
+    @foods = Food.where(isActive: true)
+    # @foods = Food.all
   end
 
   # GET /foods/1 or /foods/1.json
@@ -25,39 +27,35 @@ class FoodsController < ApplicationController
   # POST /foods or /foods.json
   def create
     @food = Food.new(food_params)
-
-    respond_to do |format|
-      if @food.save
-        format.html { redirect_to food_url(@food), notice: "Food was successfully created." }
-        format.json { render :show, status: :created, location: @food }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @food.errors, status: :unprocessable_entity }
-      end
+    # Create a new food record in the database.
+    if @food.save
+      # If the food record is successfully created, redirect to the food's page with a notice.
+      redirect_to food_url(@food), notice: "Food was successfully created."
+    else
+      # If the food record is not successfully created, render the new template with an unprocessable entity status.
+      render :new, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /foods/1 or /foods/1.json
   def update
-    respond_to do |format|
-      if @food.update(food_params)
-        format.html { redirect_to food_url(@food), notice: "Food was successfully updated." }
-        format.json { render :show, status: :ok, location: @food }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @food.errors, status: :unprocessable_entity }
-      end
+    # If the food record is successfully updated, redirect to the food's page with a notice.
+    if @food.update(food_params)
+      redirect_to food_url(@food), notice: "Food was successfully updated."
+    else
+      # If the food record is not successfully updated, render the edit template with an unprocessable entity status.
+      render :edit, status: :unprocessable_entity
     end
   end
 
-  # DELETE /foods/1 or /foods/1.json
+  # DELETE /foods or /foods.json
   def destroy
-    @food.destroy
+    # Soft delete the food because it has a isActive column.
+    @food.update(isActive: false)
 
-    respond_to do |format|
-      format.html { redirect_to foods_url, notice: "Food was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    # Redirect to the foods page with a notice.
+    flash[:notice] = "Food was successfully destroyed."
+    redirect_to foods_url
   end
 
   private
@@ -73,7 +71,7 @@ class FoodsController < ApplicationController
 
     def authorize_role
       unless current_user && (current_user.role == "Chef" || current_user.role == "Admin")
-        flash[:alert] = "Acceso denegado."
+        flash[:alert] = "Your role '#{current_user.role}' is not authorized to access this page."
         redirect_to root_path
       end
     end

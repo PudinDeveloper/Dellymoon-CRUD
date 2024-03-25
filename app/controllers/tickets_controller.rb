@@ -33,7 +33,7 @@ class TicketsController < ApplicationController
 
   # GET /tickets/1/edit
   def edit
-    @foods = Food.all
+    @foods = Food.all.where(isActive: true)
     render 'edit'
   end
 

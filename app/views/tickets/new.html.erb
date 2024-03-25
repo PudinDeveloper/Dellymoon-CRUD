@@ -3,7 +3,7 @@
 <%= form_with scope: :ticket, url: tickets_path, local: true do |f| %>
     <p>
     	<h2 class="mb-5">Create new order</h2>
-      <h4 class="my-4 alert alert-dark">Empleado: <%= current_user.email %></h4>
+      <h4 class="my-4 alert alert-dark">Employee: <%= current_user.email %></h4>
     	<h4>Table</h4>
     	<%= f.text_field :table, class: "form-control form-control-lg" %>
     </p>

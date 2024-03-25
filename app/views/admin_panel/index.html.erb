@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<div class="m-5">
+
+  <ul class="nav mb-3">
+    <li class="nav-item">
+      <%= link_to 'Back', root_path, class:"btn btn-dark" %>
+    </li>
+  </ul>
+  <h1 class="my-5">Admin panel - User administration</h1>
+  <%= link_to 'Add a user', new_admin_panel_path, class: "btn btn-success mb-3" %>
+
+  <div class="table1">
+    <table class="table table-hover table-sm">
+        <thead class="thead-dark">
+          <tr>
+            <th>Email</th>
+            <th>Role</th>
+            <th colspan="2">Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= user.email %></td>
+              <td><%= user.role %></td>
+              <% # Edit and Destroy buttons %>
+              <td><%= link_to 'Edit', edit_admin_panel_path(user), class: "btn btn-info" %></td>
+
+              <%# <td><%= button_to 'Delete', user, method: :delete, class: "btn btn-danger" </td> %>
+            </tr>
+          <% end %>
+        </tbody>
+    </table>
+  </div>
+
+  <br>
+
+</div>

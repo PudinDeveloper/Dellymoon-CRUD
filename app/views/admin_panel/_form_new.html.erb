@@ -1,0 +1,21 @@
+<%= form_with(model: user, url: { controller: "admin_panel", action: "create" }, html: { class: 'needs-validation', novalidate: true }) do |form| %>
+
+  <div class="field form-group">
+    <%= form.label "Email address", class: 'form-label' %>
+    <%= form.text_field :email, class: 'form-control' %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label "Password", class: 'form-label' %>
+    <%= form.text_field :password, class: 'form-control' %>
+  </div>
+
+  <div class="field form-group mb-3">
+    <%= form.label "Role", class: 'form-label' %>
+    <%= form.select :role, ["Waitstaff", "Chef", "Admin", "Deactivated"], {}, class: 'form-select'  %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Submit', class: 'btn btn-primary my-3' %>
+  </div>
+<% end %>

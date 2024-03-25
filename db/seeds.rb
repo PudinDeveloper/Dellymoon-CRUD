@@ -25,7 +25,7 @@ puts "Foods destroyed successfully!"
     name: Faker::Beer.name,
     quantity: Faker::Number.between(from: 100.0, to: 450.0),
     price: Faker::Commerce.price(range: 5.0..50.0),
-    food_type: 'Beverage'
+    food_type: 'Drink'
   )
 
   # Create a dessert record in the database.

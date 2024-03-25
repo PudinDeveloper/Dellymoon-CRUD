@@ -24,7 +24,7 @@
             <td><%= ticket.id %></td>
             <td><%= ticket.table %></td>
             <td>$<%= ticket.final_price ? ticket.final_price : 0.0 %></td>
-            <td><%= ticket.updated_at %></td>
+            <td><%= ticket.updated_at.localtime %></td>
             <td><%= link_to 'Open', ticket, class: "btn btn-success btn-lg" %></td>
             <td>
               <%= form_with(model: ticket, method: :delete, data: { confirm: 'Are you sure?' }) do |form| %>

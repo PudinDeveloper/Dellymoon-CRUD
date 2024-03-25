@@ -5,8 +5,17 @@ class OrderFoodsController < ApplicationController
   before_action :set_order_food, only: %i[ show edit update destroy ]
   before_action :authorize_role
 
+  # -------------------------------------------------------------
+  # FYI - STatus Codes for Order Food Table
+  # 0 - Canceled
+  # 1 - Active
+  # 2 - Ready
+  # -------------------------------------------------------------
+
   # GET /order_foods or /order_foods.json
   def index
+    # Get all the orders from tickets from the database with the status column set to 1.
+    # 1 Means that the order is active.
     @order_foods = OrderFood.all.where(status: 1)
     @order_foods_all = OrderFood.all.where.not(status: 1).reverse
   end
@@ -32,11 +41,9 @@ class OrderFoodsController < ApplicationController
 
     respond_to do |format|
       if @order_food.save
-                format.html { redirect_to order_food_url(@order_food), notice: "Order food was successfully created." }
-                format.json { render :show, status: :created, location: @order_food }
+        redirect_to order_food_url(@order_food), notice: "Order food was successfully created."
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @order_food.errors, status: :unprocessable_entity }
+        render :new, status: :unprocessable_entity
       end
     end
   end
@@ -44,14 +51,14 @@ class OrderFoodsController < ApplicationController
   # PATCH/PUT /order_foods/1 or /order_foods/1.json
   def update
     @order_food.update(status: 2)
-    flash[:notice] = 'Pedido Listo'
+    flash[:notice] = 'Order ready!'
     redirect_to order_foods_path
   end
 
   # DELETE /order_foods/1 or /order_foods/1.json
   def destroy
     @order_food.update(status: 0)
-    flash[:notice] = 'Pedido Cancelado'
+    flash[:notice] = 'Order canceled!'
     redirect_to order_foods_path
   end
 
@@ -68,7 +75,7 @@ class OrderFoodsController < ApplicationController
 
   def authorize_role
     unless current_user && (current_user.role == "Chef" || current_user.role == "Admin")
-      flash[:alert] = "Acceso denegado."
+      flash[:alert] = "Your role '#{current_user.role}' is not authorized to access this page."
       redirect_to root_path
     end
   end

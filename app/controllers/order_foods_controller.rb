@@ -57,15 +57,25 @@ class OrderFoodsController < ApplicationController
 
   # DELETE /order_foods/1 or /order_foods/1.json
   def destroy
-    @order_food.update(status: 0)
-    flash[:notice] = 'Order canceled!'
-    redirect_to order_foods_path
+    if @order_food.exists?
+      @order_food.update(status: 0)
+      flash[:notice] = 'Order canceled!'
+      redirect_to order_foods_path
+    else
+      flash[:alert] = 'Order not found!'
+      redirect_to order_foods_path
+    end
   end
 
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_order_food
-    @order_food = OrderFood.find(params[:id])
+    begin
+      @order_food = OrderFood.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      flash[:alert] = 'Oh no! Seems like the order was deleted by the waitstaff.'
+      redirect_to order_foods_path
+    end
   end
 
   # Only allow a list of trusted parameters through.

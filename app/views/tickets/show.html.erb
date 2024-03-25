@@ -1,4 +1,4 @@
-<%= link_to 'Atrás', tickets_path, class: "btn btn-secondary" %> <a href="#" class="mx-5 btn btn-primary" onclick="window.location.reload();">Recargar 🔄</a>
+<%= link_to 'Back', tickets_path, class: "btn btn-secondary" %> <a href="#" class="mx-5 btn btn-primary" onclick="window.location.reload();">Reload 🔄</a>
 
 <h3 class="my-3 mt-4"><strong>Ticket ID: <strong><%= @ticket.id %></h3>
 <h5 class="alert alert-info">
@@ -13,10 +13,10 @@
   <strong>Employee:</strong>
   <%= @employee.email %>
 </h5>
-<%= link_to 'Añadir items to the ticket', edit_ticket_path(@ticket), class: "btn btn-success my-4" %>
+<%= link_to 'Add items to the ticket', edit_ticket_path(@ticket), class: "btn btn-success my-4" %>
 
 
-<h3 class="mb-3">Current food/drinks in the order</h3>
+<h3 class="mb-3">Current food/drinks in the ticket</h3>
 <p id="notice"><%= notice %></p>
 
 
@@ -59,3 +59,11 @@
     <% end %>
   </tbody>
 </table>
+
+<script type="text/javascript">
+    window.onload= function(){
+     setTimeout(function(){
+        window.location.reload();
+     }, 4500);
+    }
+</script>

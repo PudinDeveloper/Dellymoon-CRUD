@@ -1,4 +1,11 @@
 <div class="container">
+  <script type="text/javascript">
+    window.onload= function(){
+     setTimeout(function(){
+        window.location.reload();
+     }, 4500);
+    }
+  </script>
   <h2>Kitchen dashboard - Current orders<a href="#" class="mx-5 btn btn-primary" onclick="window.location.reload();">Reload 🔄</a></h2>
   <br>
   <div class="table1">
@@ -24,7 +31,7 @@
             <% else %>
               <td><div class="alert alert-success w-75 text-center p-1">Done</div></td>
             <% end %>
-            <td><%= order_food.id %></td>
+            <td><%= order_food.ticket_id %></td>
             <td><%= food.name %></td>
             <td><%= ticket.table %></td>
             <%= form_with(model: order_food, url: url_for(order_food), local: true, method: :patch) do |f| %>
@@ -63,7 +70,7 @@
             <% else %>
               <td><div class="alert alert-success w-75 text-center p-1">Done</div></td>
             <% end %>
-            <td><%= order_food.id %></td>
+            <td><%= order_food.ticket_id %></td>
             <td><%= food.name %></td>
             <td><%= ticket.table %></td>
             <td><%= order_food.created_at.strftime("%d/%m/%Y %H:%M") %></td>

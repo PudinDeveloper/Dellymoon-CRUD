@@ -6,7 +6,7 @@ class OrderFoodsController < ApplicationController
   before_action :authorize_role
 
   # -------------------------------------------------------------
-  # FYI - STatus Codes for Order Food Table
+  # FYI - Status Codes for Order Food Table
   # 0 - Canceled
   # 1 - Active
   # 2 - Ready
@@ -39,12 +39,13 @@ class OrderFoodsController < ApplicationController
   def create
     @order_food = OrderFood.new(order_food_params)
 
-    respond_to do |format|
-      if @order_food.save
-        redirect_to order_food_url(@order_food), notice: "Order food was successfully created."
-      else
-        render :new, status: :unprocessable_entity
-      end
+    # This is to prevent the user from creating an order with a ticket that is already closed.
+    # If the ticket is closed, the user will be redirected to the order_foods page.
+    if @order_food.save
+      redirect_to order_food_url(@order_food), notice: "Order food was successfully created."
+    else
+      flash[:notice] = @order_food.errors.full_messages.join(', ')
+      redirect_to order_foods_path
     end
   end
 
@@ -57,19 +58,21 @@ class OrderFoodsController < ApplicationController
 
   # DELETE /order_foods/1 or /order_foods/1.json
   def destroy
-    if @order_food.exists?
+    if @order_food
       @order_food.update(status: 0)
       flash[:notice] = 'Order canceled!'
-      redirect_to order_foods_path
     else
       flash[:alert] = 'Order not found!'
-      redirect_to order_foods_path
     end
+    redirect_to order_foods_path
   end
 
   private
   # Use callbacks to share common setup or constraints between actions.
+
   def set_order_food
+    # This is to prevent the user from accessing an order that does not exist.
+    # If the order does not exist, the user will be redirected to the order_foods page.
     begin
       @order_food = OrderFood.find(params[:id])
     rescue ActiveRecord::RecordNotFound

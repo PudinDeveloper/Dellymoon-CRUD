@@ -73,7 +73,7 @@
             <td><%= order_food.ticket_id %></td>
             <td><%= food.name %></td>
             <td><%= ticket.table %></td>
-            <td><%= order_food.created_at.strftime("%d/%m/%Y %H:%M") %></td>
+            <td><%= order_food.created_at.localtime.strftime("%d/%m/%Y %H:%M") %></td>
           </tr>
         <% end %>
       </tbody>

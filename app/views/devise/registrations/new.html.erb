@@ -1,7 +1,7 @@
 <div class="login-container">
   <h2 class="mb-4">Sign up for a new account</h2>
 
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), data: {controller: "md5register"}) do |f| %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource, class: 'alert alert-danger' %>
 
     <span class="input-group-text mb-1" id="inputGroup-sizing-lg">Email address</span>
